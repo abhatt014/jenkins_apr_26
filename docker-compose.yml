@@ -65,7 +65,7 @@ services:
   # ---------- Frontend (server-rendered UI, browser-facing) ----------
   frontend-service:
     build: ./frontend-service
-    image: amitfreeze/apr_jen_product:latest
+    image: amitfreeze/apr_jen_frontend:latest
     container_name: frontend-service
     restart: always
     depends_on:
