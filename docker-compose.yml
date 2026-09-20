@@ -17,6 +17,7 @@ services:
 
   auth-service:
     build: ./auth-service
+    image: amitfreeze/apr_jen_auth:latest
     container_name: auth-service
     restart: always
     depends_on:
@@ -31,6 +32,7 @@ services:
 
   product-service:
     build: ./product-service
+    image: amitfreeze/apr_jen_product:latest
     container_name: product-service
     restart: always
     depends_on:
@@ -45,6 +47,7 @@ services:
 
   order-service:
     build: ./order-service
+    image: amitfreeze/apr_jen_order:latest
     container_name: order-service
     restart: always
     depends_on:
@@ -62,6 +65,7 @@ services:
   # ---------- Frontend (server-rendered UI, browser-facing) ----------
   frontend-service:
     build: ./frontend-service
+    image: amitfreeze/apr_jen_product:latest
     container_name: frontend-service
     restart: always
     depends_on:
