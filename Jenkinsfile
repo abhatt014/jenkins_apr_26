@@ -50,7 +50,7 @@ pipeline {
     }
     stage('deploy') {
         steps {
-         sh 'docker compose down'
+         sh 'docker rm -f  ecomm-db product-service auth-service frontend-service order-service'
          sh 'docker compose up -d'
         }
     }
