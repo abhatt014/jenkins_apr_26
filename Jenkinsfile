@@ -1,4 +1,3 @@
-@Library('my-shared-demo@main') _
 pipeline {
  agent any
 
@@ -34,7 +33,19 @@ pipeline {
      }
     stage('push') {
         steps {
-             dockerLogin()
+             withCredentials([usernamePassword(credentialsId: 'dockerhub',
+             usernameVariable: 'DOCKERHUB_USER',
+             passwordVariable: 'DOCKERHUB_PWD')]) {
+                 sh 'echo "$DOCKERHUB_PWD" | docker login -u $DOCKERHUB_USER --password-stdin' 
+                 sh 'docker push "amitfreeze/apr_jen_auth:$TAG"' 
+                 sh 'docker push "amitfreeze/apr_jen_auth:latest"' 
+                 sh 'docker push "amitfreeze/apr_jen_frontend:$TAG"' 
+                 sh 'docker push "amitfreeze/apr_jen_frontend:latest"'
+                 sh 'docker push "amitfreeze/apr_jen_order:$TAG"'
+                 sh 'docker push "amitfreeze/apr_jen_order:latest"'	
+                 sh 'docker push "amitfreeze/apr_jen_product:$TAG"'
+                 sh 'docker push "amitfreeze/apr_jen_product:latest"'
+            }
         }
     }
     stage('deploy') {
