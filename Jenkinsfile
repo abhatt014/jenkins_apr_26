@@ -1,5 +1,5 @@
 pipeline {
- agent any
+ agent {label 'test'}
 
  environment {
  TAG = "${env.BUILD_NUMBER}"
